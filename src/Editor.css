@@ -1,0 +1,38 @@
+* {
+    font-family: 'Source Code Pro', monospace;
+}
+.editor__header {
+    height: 2rem;
+    display: flex;
+    justify-content: flex-end;
+}
+.editor__dropdown {
+    font-size: 1.1rem;
+    height: 2rem;
+    width: 8rem;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    background-color: #2d3d44;
+    border-bottom: 1px solid white;
+    padding: 6px;
+    color: white;
+}
+.editor__dropdown:hover {
+    background-color: #28373d;
+}
+.editor__dropdown option {
+    font-size: 1.1rem;
+}
+
+.editor {
+    display: flex;
+    flex-direction: column;
+    background-color:#2d3d44;
+    width: 50rem;
+}
+.CodeMirror {
+    height: 50rem;
+    font-size: 1.1rem;
+}
+
