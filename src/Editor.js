@@ -1,11 +1,13 @@
 import React from "react";
 import { UnControlled as CodeMirror } from "react-codemirror2";
 
+// reducer
+import { useStateValue } from './StateProvider';
+
 // Themes
 
 import "codemirror/lib/codemirror.css";
-import "codemirror/theme/material.css";
-
+import "codemirror/theme/material-darker.css";
 // Language Supports
 
 import "codemirror/mode/python/python";
@@ -21,6 +23,7 @@ import "codemirror/mode/go/go";
 import "codemirror/addon/edit/closebrackets";
 import "codemirror/addon/edit/matchbrackets";
 import "codemirror/addon/edit/matchtags";
+import "codemirror/addon/scroll/simplescrollbars";
 
 import "./Editor.css";
 function Editor() {
@@ -48,13 +51,14 @@ function Editor() {
     Rust: "rust",
     Text: "",
   };
-
+  const [{ lang, text }, dispatch] = useStateValue();
+  console.log(lang);
   return (
     <div className="editor">
       <header className="editor__header">
         <select className="editor__dropdown">
           {langSupport.map((option) => (
-            <option selected>{option}</option>
+            <option selected="selected">{option}</option>
           ))}
         </select>
       </header>
@@ -62,16 +66,19 @@ function Editor() {
         className="editor__codemirror"
         value="#include <bits/stdc++.h>"
         options={{
-          mode: "",
-          theme: "material",
+          mode: "css",
+          theme: "material-darker",
           autoCloseBrackets: true,
           matchBrackets: true,
           lineNumbers: true,
           matchTags: true,
           smartIndent: true,
           dragDrop: true,
+          indentUnit: 4,
         }}
-        onChange={(editor, data, value) => {}}
+        onChange={(editor, data, value) => {
+          console.log(value);
+        }}
       ></CodeMirror>
     </div>
   );
