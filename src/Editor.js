@@ -26,7 +26,6 @@ import "codemirror/addon/edit/matchtags";
 import "codemirror/addon/scroll/simplescrollbars";
 import "codemirror/addon/edit/closetag";
 import "./Editor.css";
-import axios from "axios";
 function Editor() {
   const langChange = function (e) {
     e.preventDefault();
@@ -60,10 +59,8 @@ function Editor() {
     Text: "",
   };
 
-  const backendUrl = "http://localhost:7000";
 
   const [{ lang, text }, dispatch] = useStateValue();
-  console.log(text);
   return (
     <div className="editor">
       <header className="editor__header">
