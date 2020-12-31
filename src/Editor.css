@@ -1,18 +1,14 @@
-* {
-    font-family: 'Source Code Pro', monospace;
-}
 .editor {
     display: flex;
     flex-direction: column;
-    background-color:white;
-    max-width: 50rem;
-
+    background-color: #225555;
+    width: 50rem;
 }
 .editor__header {
     height: 2rem;
     display: flex;
     justify-content: flex-end;
-    background-color: #225555;
+    background-color: #1c3333;
 }
 .editor__dropdown {
     font-size: 1rem;
@@ -21,23 +17,34 @@
     font-weight: bold;
     outline: none;
     border: none;
-    background-color: #225555;
+    background-color: #1c3333;
     border-bottom: 1px solid white;
     font-family: 'Poppins';
     color: white;
 }
 .editor__dropdown:hover {
-    background-color: #225555;
+    background-color: #1c3333;
 }
 .editor__dropdown option {
     font-size: 1rem;
     font-family: 'Poppins';
+    right: 0;
 }
 
 .CodeMirror {
-    min-height: 55rem;
+    height: 45rem;
     font-size: 1rem;
     overflow-y: hidden;
+    font-family: 'Source Code Pro';
 }
 
-
+@media(max-width: 700px)
+{   
+    .editor {
+        min-width: 25rem;
+        width: 100%!important;
+    }
+    .CodeMirror {
+        max-height: 37rem;
+    }
+}
