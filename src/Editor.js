@@ -24,8 +24,9 @@ import "codemirror/addon/edit/closebrackets";
 import "codemirror/addon/edit/matchbrackets";
 import "codemirror/addon/edit/matchtags";
 import "codemirror/addon/scroll/simplescrollbars";
-import "codemirror/addon/edit/closetag"
+import "codemirror/addon/edit/closetag";
 import "./Editor.css";
+import axios from "axios";
 function Editor() {
   const langChange = function (e) {
     e.preventDefault();
@@ -58,7 +59,11 @@ function Editor() {
     Rust: "rust",
     Text: "",
   };
+
+  const backendUrl = "http://localhost:7000";
+
   const [{ lang, text }, dispatch] = useStateValue();
+  console.log(text);
   return (
     <div className="editor">
       <header className="editor__header">
@@ -70,7 +75,7 @@ function Editor() {
       </header>
       <CodeMirror
         className="editor__codemirror"
-        value="#include <bits/stdc++.h>"
+        value={""}
         options={{
           mode: langMap[lang],
           theme: "material-darker",
@@ -81,9 +86,19 @@ function Editor() {
           smartIndent: true,
           dragDrop: true,
           autoCloseTags: true,
+          lineWrapping: true,
+          lineWiseCopyCut: true,
+          lint: true,
           indentUnit: 4,
         }}
+        onChange={(editor, data, value)=>{
+          dispatch({
+            type: "CHANGE_TEXT_CONTENT",
+            code: value,
+          })
+        }}
       ></CodeMirror>
+      
     </div>
   );
 }
