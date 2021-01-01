@@ -39,6 +39,7 @@ function Editor({ code, langUsed, date = new Date().toDateString() }) {
     Go: "go",
     Rust: "rust",
     Text: "",
+    "": null,
   };
   const [{ lang, text }, dispatch] = useStateValue();
   return (
@@ -48,7 +49,7 @@ function Editor({ code, langUsed, date = new Date().toDateString() }) {
         className="editor__codemirror"
         value={code}
         options={{
-          mode: langMap[langUsed],
+          mode: langUsed===undefined?langMap[lang]:langMap[langUsed],
           theme: "material-darker",
           lineNumbers: true,
           matchTags: true,
