@@ -11,7 +11,7 @@ function Home() {
   const backendUrl = "http://localhost:7000";
   const sendText = async function (e) {
     e.preventDefault();
-    history.push('/nm');
+    history.push("/loading");
     try {
       const data = await axios({
         url: backendUrl,
@@ -25,6 +25,7 @@ function Home() {
         type: "SET_KEY",
         key: data.data.Key,
       });
+      history.push(`${data.data.key}`);
     } catch (err) {}
   };
   return (
@@ -33,9 +34,9 @@ function Home() {
         <div className="home__legend">
           <h1>Paste and share</h1>
           <Editor className="home__editor"></Editor>
-            <button className="home__button" onClick={sendText}>
-              GET URL
-            </button>
+          <button className="home__button" onClick={sendText}>
+            GET URL
+          </button>
         </div>
       </div>
     </div>

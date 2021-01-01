@@ -14,7 +14,7 @@ const reducer = (state, action) => {
     case "CHANGE_TEXT_CONTENT":
       return {
         ...state,
-        text: action.code,
+        text: action.text,
       };
     case "SET_KEY":
       return {

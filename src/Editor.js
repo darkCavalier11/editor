@@ -23,12 +23,11 @@ import "codemirror/mode/go/go";
 import "codemirror/addon/edit/closebrackets";
 import "codemirror/addon/edit/matchbrackets";
 import "codemirror/addon/edit/matchtags";
-import "codemirror/addon/scroll/simplescrollbars";
 import "codemirror/addon/edit/closetag";
 import "./Editor.css";
 import EditorHeader from "./EditorHeader";
-function Editor({code, langUsed, date = new Date().toDateString()}) {
-  
+function Editor({ code, langUsed, date = new Date().toDateString() }) {
+  let textContent = "";
   const langMap = {
     "C/C++": "text/x-c++src",
     Java: "text/x-java",
@@ -41,20 +40,16 @@ function Editor({code, langUsed, date = new Date().toDateString()}) {
     Rust: "rust",
     Text: "",
   };
-
-
   const [{ lang, text }, dispatch] = useStateValue();
   return (
     <div className="editor">
-      <EditorHeader lang={langUsed|lang} date={date}></EditorHeader>
+      <EditorHeader defaultLang={langUsed} date={date}></EditorHeader>
       <CodeMirror
         className="editor__codemirror"
-        value={code||text}
+        value={code}
         options={{
-          mode: langMap[langUsed||lang],
+          mode: langMap[langUsed],
           theme: "material-darker",
-          autoCloseBrackets: true,
-          matchBrackets: true,
           lineNumbers: true,
           matchTags: true,
           smartIndent: true,
@@ -62,17 +57,17 @@ function Editor({code, langUsed, date = new Date().toDateString()}) {
           autoCloseTags: true,
           lineWrapping: true,
           lineWiseCopyCut: true,
+          autoCloseBrackets: true,
           lint: true,
           indentUnit: 4,
         }}
-        onChange={(editor, data, value)=>{
+        onChange={(editor, data, value) => {
           dispatch({
             type: "CHANGE_TEXT_CONTENT",
-            code: value,
-          })
+            text: value,
+          });
         }}
       ></CodeMirror>
-      
     </div>
   );
 }

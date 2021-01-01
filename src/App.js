@@ -1,28 +1,25 @@
 import { useEffect } from "react";
 import { useStateValue } from "./StateProvider";
 import Home from "./Home";
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Editor from "./Editor";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Reader from "./Reader";
+import Loading from "./Loading";
 
 function App() {
-  const [{}, dispatch] = useStateValue();
-  useEffect(() => {
-    dispatch({
-      type: "CHANGE_LANG",
-      lang: "Text",
-    });
-    return () => {};
-  }, []);
+  const [{ lang, text, key }, dispatch] = useStateValue();
+  
   return (
     <div className="app">
       <Router>
         <Switch>
-          <Route path="/nm">
+          <Route path="/loading">
+            <Loading></Loading>
+          </Route>
+          <Route path="/:params">
             <Reader></Reader>
           </Route>
           <Route path="/">
-              <Home></Home>
+            <Home></Home>
           </Route>
         </Switch>
       </Router>
