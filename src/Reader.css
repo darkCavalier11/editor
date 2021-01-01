@@ -1,0 +1,9 @@
+.reader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.reader > h1 {
+    font-weight: bolder;
+    color: white;
+}

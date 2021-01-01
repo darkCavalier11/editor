@@ -27,7 +27,7 @@ import "codemirror/addon/scroll/simplescrollbars";
 import "codemirror/addon/edit/closetag";
 import "./Editor.css";
 import EditorHeader from "./EditorHeader";
-function Editor({code, langUsed}) {
+function Editor({code, langUsed, date = new Date().toDateString()}) {
   
   const langMap = {
     "C/C++": "text/x-c++src",
@@ -46,7 +46,7 @@ function Editor({code, langUsed}) {
   const [{ lang, text }, dispatch] = useStateValue();
   return (
     <div className="editor">
-      <EditorHeader className="editor__header"></EditorHeader>
+      <EditorHeader lang={langUsed|lang} date={date}></EditorHeader>
       <CodeMirror
         className="editor__codemirror"
         value={code||text}
