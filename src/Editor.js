@@ -26,26 +26,9 @@ import "codemirror/addon/edit/matchtags";
 import "codemirror/addon/scroll/simplescrollbars";
 import "codemirror/addon/edit/closetag";
 import "./Editor.css";
-function Editor() {
-  const langChange = function (e) {
-    e.preventDefault();
-    dispatch({
-      type: "CHANGE_LANG",
-      lang: e.target.value,
-    });
-  };
-  const langSupport = [
-    "C/C++",
-    "Python",
-    "JavaScript",
-    "Java",
-    "HTML",
-    "CSS",
-    "XML",
-    "Go",
-    "Rust",
-    "Text",
-  ];
+import EditorHeader from "./EditorHeader";
+function Editor({code, langUsed}) {
+  
   const langMap = {
     "C/C++": "text/x-c++src",
     Java: "text/x-java",
@@ -63,18 +46,12 @@ function Editor() {
   const [{ lang, text }, dispatch] = useStateValue();
   return (
     <div className="editor">
-      <header className="editor__header">
-        <select className="editor__dropdown" onChange={langChange}>
-          {langSupport.map((option) => (
-            <option selected="selected">{option}</option>
-          ))}
-        </select>
-      </header>
+      <EditorHeader className="editor__header"></EditorHeader>
       <CodeMirror
         className="editor__codemirror"
-        value={""}
+        value={code||text}
         options={{
-          mode: langMap[lang],
+          mode: langMap[langUsed||lang],
           theme: "material-darker",
           autoCloseBrackets: true,
           matchBrackets: true,

@@ -1,7 +1,10 @@
 import { useEffect } from "react";
 import { useStateValue } from "./StateProvider";
-import Editor from "./Editor";
 import Home from "./Home";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Editor from "./Editor";
+import Reader from "./Reader";
+
 function App() {
   const [{}, dispatch] = useStateValue();
   useEffect(() => {
@@ -13,7 +16,16 @@ function App() {
   }, []);
   return (
     <div className="app">
-      <Home></Home>
+      <Router>
+        <Switch>
+          <Route path="/nm">
+            <Reader></Reader>
+          </Route>
+          <Route path="/">
+              <Home></Home>
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }

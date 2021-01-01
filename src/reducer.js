@@ -1,6 +1,7 @@
 export const initialState = {
   lang: "",
   text: "",
+  key: "",
 };
 
 const reducer = (state, action) => {
@@ -14,6 +15,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         text: action.code,
+      };
+    case "SET_KEY":
+      return {
+        ...state,
+        key: action.key,
       };
     default:
       return state;

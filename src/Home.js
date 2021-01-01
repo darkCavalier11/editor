@@ -5,18 +5,28 @@ import { useStateValue } from "./StateProvider";
 import axios from "axios";
 
 function Home() {
-  const [{ lang, text }, dispatch] = useStateValue();
+  const [{ lang, text, key }, dispatch] = useStateValue();
   const backendUrl = "http://localhost:7000";
-  const sendText = function (e) {
+  const sendText = async function (e) {
     e.preventDefault();
-    axios({
-      url: backendUrl,
-      method: "POST",
-      data: {
-        data: text,
-        lang: lang,
-      },
-    });
+    try {
+      const data = await axios({
+        url: backendUrl,
+        method: "POST",
+        data: {
+          data: text,
+          lang: lang,
+        },
+      });
+      dispatch({
+        type: "SET_KEY",
+        key: data.data.Key,
+      });
+      const linkEle = document.querySelector(".none");
+      linkEle.className = "home__link";
+      linkEle.href = `${backendUrl}/${data.data.key}`;
+      linkEle.textContent = `${backendUrl}/${data.data.key}`;
+    } catch (err) {}
   };
   return (
     <div className="home">
@@ -27,6 +37,7 @@ function Home() {
           <button className="home__button" onClick={sendText}>
             GET URL
           </button>
+          <a href="#" className="none"></a>
         </div>
       </div>
     </div>

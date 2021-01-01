@@ -18,6 +18,7 @@
   color: #ffffff;
 }
 .home__button {
+  width: 100%;
   cursor: pointer;
   margin-top: 1rem;
   border: none;
@@ -29,4 +30,17 @@
   font-weight: bolder;
   letter-spacing: 5px;
   outline: none;
+}
+.none{
+  display: none;
+}
+.home__link {
+  margin-top: 1rem;
+  background-color: #1c3333;
+  width: 100%;
+  border-radius: 10px;
+  color: white;
+  text-decoration: none;
+  padding: 5px 15px;
+  text-align: center;
 }
