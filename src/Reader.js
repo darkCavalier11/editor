@@ -5,8 +5,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 function Reader() {
-  const backendUrl = "http://localhost:7000";
+  const backendUrl = "https://paste-up.herokuapp.com";
   const path = window.location.pathname;
+  console.log(path)
   const [textContent, settextContent] = useState("");
   const [langUsed, setlangUsed] = useState("");
   const [date, setDate] = useState("");

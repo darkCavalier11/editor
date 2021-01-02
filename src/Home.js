@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom";
 function Home() {
   const history = useHistory();
   const [{ lang, text, key }, dispatch] = useStateValue();
-  const backendUrl = "http://localhost:7000";
+  const backendUrl = "https://paste-up.herokuapp.com/";
   const sendText = async function (e) {
     e.preventDefault();
     history.push("/loading");
