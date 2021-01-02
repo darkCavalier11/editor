@@ -39,7 +39,6 @@ function Editor({ code, langUsed, date = new Date().toDateString() }) {
     Go: "go",
     Rust: "rust",
     Text: "",
-    "": null,
   };
   const [{ lang, text }, dispatch] = useStateValue();
   return (

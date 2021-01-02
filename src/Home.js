@@ -33,7 +33,7 @@ function Home() {
       <div className="home__container">
         <div className="home__legend">
           <h1>Paste and share</h1>
-          <Editor className="home__editor"></Editor>
+          <Editor langUsed={lang} className="home__editor"></Editor>
           <button className="home__button" onClick={sendText}>
             GET URL
           </button>

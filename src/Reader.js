@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 function Reader() {
   const backendUrl = "https://paste-up.herokuapp.com";
   const path = window.location.pathname;
-  console.log(path)
   const [textContent, settextContent] = useState("");
   const [langUsed, setlangUsed] = useState("");
   const [date, setDate] = useState("");
